@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/24.10-nss'
+    if: github.ref == 'refs/heads/main-nss-6.6'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -13,10 +13,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: 24.10-nss
-          fetch-depth: 0       # Fetch full history
-          # fetch-depth: 100   # Adjust depth based on how far back the bump commit is
-          # fetch-depth: 1     # default shallow clone
+          ref: main-nss-6.6
+          fetch-depth: 0       
 
       - name: Show the content of feeds.conf.default
         run: |  
@@ -112,7 +110,7 @@ jobs:
 
       - name: Prepare config file
         run: |
-          cp ./nss-setup/diffconfig.aw1000.all.nss .config
+          cp ./nss-setup/AW1000.nss .config
           make defconfig
 
       - name: Download package sources
